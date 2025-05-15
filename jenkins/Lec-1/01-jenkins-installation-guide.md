@@ -41,10 +41,13 @@ https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
 sudo apt-get update
 ```
 
-2. Install Jenkins:
+2. Install Jenkins and Start it :
 
 ```bash
 sudo apt-get install jenkins
+sudo systemctl enable jenkins
+sudo systemctl status jenkins
+
 ```
 
 ---
