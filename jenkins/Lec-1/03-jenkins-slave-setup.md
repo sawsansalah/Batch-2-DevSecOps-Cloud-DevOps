@@ -60,14 +60,14 @@ ssh your_user@<gcp-vm-ip>
 
 3. Click **OK**, then fill in:
    - **# of executors**: e.g., 1 or 2
-   - **Remote root directory**: `/home/jenkins/agent`
+   - **Remote root directory**: `/home/username_of_vm/agent`
    - **Labels**: e.g., `gcp`
    - **Launch method**: *Launch agents via SSH*
 
 4. Configure SSH:
    - **Host**: `<gcp-vm-ip>`
    - **Credentials**: Add Jenkins credentials for SSH:
-     - Username: `jenkins`
+     - Username: `username_of_vm`
      - Private Key: Paste the contents of `~/.ssh/id_rsa`
 
 5. Click **Save**, then **Launch agent** to test the connection.
