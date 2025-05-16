@@ -134,7 +134,7 @@ pipeline {
     }
     
 }
-```groovy
+```
 
 ---
 ## Explanation
