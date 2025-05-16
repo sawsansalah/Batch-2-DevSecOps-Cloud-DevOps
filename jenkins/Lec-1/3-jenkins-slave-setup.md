@@ -1,7 +1,7 @@
 
-# Adding a Jenkins Slave on Ubuntu (GCP)
+# Adding a Jenkins Slave on Ubuntu 
 
-This guide provides step-by-step instructions to configure a Jenkins agent (slave) on an Ubuntu VM in Google Cloud Platform (GCP).
+This guide provides step-by-step instructions to configure a Jenkins agent (slave) on an Ubuntu VM 
 
 ---
 
@@ -125,6 +125,6 @@ Trigger the pipeline. Jenkins will assign the job to the GCP-based slave if it m
 
 ## 📌 Tips
 
-- Ensure firewall rules allow SSH access (port 22) from Jenkins master to the GCP VM.
-- You can also use inbound TCP agent communication (JNLP) if SSH is not preferred.
+- Ensure firewall rules allow SSH access (port 22) from Jenkins master to the VM.
+
 - Monitor agent logs under **Manage Nodes → gcp-agent → Log**.
