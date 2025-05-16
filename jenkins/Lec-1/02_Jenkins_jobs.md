@@ -103,7 +103,6 @@ Choose one or more of the following:
 
 ## Jenkins Pipeline Job (Declarative Example)
 
-> You mentioned wanting to include a Jenkins Pipeline section. Here's a brief example:
 
 ```groovy
 pipeline {
@@ -117,9 +116,9 @@ pipeline {
                 git 'https://github.com/your-repo/project.git'
             }
         }
-        stage('Build') {
+        stage('Compile') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn compile'
             }
         }
         stage('Test') {
@@ -127,9 +126,9 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Archive') {
+        stage('Package') {
             steps {
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+                sh 'mvn package'
             }
         }
     }
