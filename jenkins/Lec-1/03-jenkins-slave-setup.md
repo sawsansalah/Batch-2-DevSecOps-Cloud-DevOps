@@ -51,7 +51,7 @@ ssh your_user@<gcp-vm-ip>
 
 ---
 
-## 🖥️ Step 4: Add the Agent Node in Jenkins Master
+## 🖥️ Step 3: Add the Agent Node in Jenkins Master
 
 1. Go to **Jenkins Dashboard** → **Manage Jenkins** → **Manage Nodes and Clouds** → **New Node**
 2. Enter:
