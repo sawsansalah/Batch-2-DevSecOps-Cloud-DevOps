@@ -134,3 +134,27 @@ pipeline {
     }
     
 }
+
+## Explanation
+
+1. **Agent**:  
+   The `agent any` directive tells Jenkins to run the pipeline on any available agent.
+
+2. **Tools**:  
+   The `tools` block specifies the tools required by the pipeline, such as JDK and Maven.  
+   Replace `'jdk_name'` and `'maven_name'` with the actual tool names configured in Jenkins.
+
+3. **Stages**:  
+   The `stages` block defines the various stages of the pipeline. Each stage represents a step in the CI/CD process:
+
+   - **Checkout**:  
+     Checks out the source code from the Git repository.
+
+   - **Compile**:  
+     Compiles the source code using Maven.
+
+   - **Test**:  
+     Runs tests using Maven.
+
+   - **Package**:  
+     Packages the application (e.g., creating a JAR file).
