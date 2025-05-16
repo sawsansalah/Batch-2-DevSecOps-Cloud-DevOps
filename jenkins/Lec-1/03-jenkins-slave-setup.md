@@ -27,22 +27,8 @@ java -version
 
 ---
 
-## 🔧 Step 2: Create a Jenkins User (Optional but Recommended)
 
-```bash
-sudo adduser jenkins
-sudo usermod -aG sudo jenkins
-```
-
-Switch to the Jenkins user:
-
-```bash
-su - jenkins
-```
-
----
-
-## 🔑 Step 3: Set Up SSH Keys (for agent connection)
+## 🔑 Step 2: Set Up SSH Keys (for agent connection)
 
 On Jenkins master, generate an SSH key if not already done:
 
@@ -53,13 +39,14 @@ ssh-keygen -t rsa -b 4096 -C "jenkins-agent"
 Copy the public key to the GCP Ubuntu agent:
 
 ```bash
-ssh-copy-id jenkins@<gcp-vm-ip>
+nano .ssh/authorized_keys
+##add your public key
 ```
 
 Test SSH login:
 
 ```bash
-ssh jenkins@<gcp-vm-ip>
+ssh your_user@<gcp-vm-ip>
 ```
 
 ---
