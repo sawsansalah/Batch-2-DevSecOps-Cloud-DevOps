@@ -85,7 +85,7 @@ Click the **Save** button at the bottom of the page.
 
 - ✅ Always keep one admin user with full permissions.
 - ✅ Use groups instead of individual usernames where possible.
-- ✅ Backup `$JENKINS_HOME/config.xml` before making permission changes.
+
 - ✅ Test user roles regularly.
 
 ---
@@ -98,7 +98,4 @@ Install the **Impersonate User** plugin to easily test roles without logging in/
 
 ---
 
-## 📂 File Info
 
-- **Filename**: `matrix-authentication-jenkins.md`
-- **Purpose**: Local Jenkins security setup with matrix-based permissions
