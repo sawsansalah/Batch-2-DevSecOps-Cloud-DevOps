@@ -189,32 +189,7 @@ pipeline {
 
 ---
 
-## 11. ⚙️ Advanced Parameter Handling
 
-### Parameter Validation:
-- Add conditions in `script` blocks to validate parameters (e.g., check format, required fields).
-
-### Dynamic Parameters:
-- Can generate values dynamically using REST APIs or scripts in `input` steps or using plugins.
-
----
-
-## 12. 🧪 Practical Use Cases
-
-- **Deploying to environments**: Use `CHOICE_PARAM` for `Dev`, `QA`, `Prod`.
-- **Toggle features**: Use `BOOLEAN_PARAM` to enable/disable deployment steps.
-- **Secure login**: Use `CREDENTIALS_PARAM` for credentials used in scripts or API calls.
-
----
-
-## 13. 🔐 Security Considerations
-
-- Always use **credentials** and **password** parameters for sensitive data.
-- Use Jenkins credential store instead of hardcoded secrets.
-- Avoid printing secret variables in logs.
-
----
-
-## 14. 📌 Conclusion
+##. 📌 Conclusion
 
 Pipeline parameters are a powerful tool in Jenkins, enabling dynamic, flexible, and secure pipeline execution. By combining different parameter types, you can create interactive and reusable pipelines for a wide range of CI/CD workflows.
