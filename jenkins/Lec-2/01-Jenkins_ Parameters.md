@@ -72,6 +72,30 @@ booleanParam(name: 'BOOLEAN_PARAM', defaultValue: true, description: 'Enable or 
 ```groovy
 choice(name: 'CHOICE_PARAM', choices: ['Option 1', 'Option 2', 'Option 3'], description: 'Select an option')
 ```
+```groovy
+pipeline {
+    agent any
+    parameters {
+        choice(name: 'Branch_Name', choices: ['main', 'QA', 'Dev'], description: 'Select an option')
+
+    }
+    stages {
+        stage('Git') {
+            steps {
+                script {
+                    git branch: params.Branch_Name, url: 'https://github.com/sawsansalah/FullStack-Blogging-App.git'
+                }
+            }
+        }
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
+```
+
 
 ### Explanation:
 - Dropdown input with fixed choices.
