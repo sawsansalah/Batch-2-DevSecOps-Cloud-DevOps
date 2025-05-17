@@ -28,6 +28,25 @@ Each serves a different purpose depending on the input required.
 string(name: 'STRING_PARAM', defaultValue: 'default value', description: 'Enter a string value')
 ```
 
+```groovy
+pipeline {
+    agent any
+    parameters {
+        string(name: 'Branch_Name', defaultValue: 'main', description: 'Enter Branch Name')
+    }
+    stages {
+        stage('Git') {
+            steps {
+                script {
+                    git branch: params.Branch_Name, url: 'https://github.com/sawsansalah/FullStack-Blogging-App.git'
+                }
+            }
+        }
+        
+    }
+}
+
+```
 ### Explanation:
 - Accepts free-text input.
 - Commonly used for names, tags, version numbers, etc.
