@@ -106,4 +106,3 @@ This guide provides step-by-step instructions to configure Jenkins jobs that are
 
 ---
 
-> ✅ **Note:** Ensure your Jenkins server is accessible to GitHub (e.g., with a public IP or via tunneling tools like `ngrok`) so GitHub can successfully deliver the webhook.
