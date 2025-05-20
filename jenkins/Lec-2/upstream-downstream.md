@@ -1,9 +1,6 @@
 # Jenkins Integration Guide
 
-This document covers:
 
-- 🔁 Upstream → Downstream **Pipeline job chaining**
-- 🔁 Upstream → Downstream **Freestyle job chaining**
 
 
 ## 🧱 3. Freestyle Job Chaining: Upstream → Downstream
