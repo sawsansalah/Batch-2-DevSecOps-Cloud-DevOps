@@ -77,7 +77,7 @@ This guide provides step-by-step instructions to configure Jenkins jobs that are
 1. Create or open a **Multibranch Pipeline** job.
 2. In job configuration, scroll to **Scan Multibranch Pipeline Triggers**.
 3. Check **Scan by webhook**.
-4. Enter a **Trigger token** (e.g., `Devopsshack`).
+4. Enter a **Trigger token** (e.g., `DevopsTeam`).
 
 ### Step 3: Configure GitHub Webhook
 
@@ -87,13 +87,13 @@ This guide provides step-by-step instructions to configure Jenkins jobs that are
 4. In **Payload URL**, enter:
 
    ```
-   http://<JENKINS_URL>/multibranch-webhook-trigger/invoke?token=Devopsshack
+   http://<JENKINS_URL>/multibranch-webhook-trigger/invoke?token=DevopsTeam
    ```
 
    Example:
 
    ```
-   http://65.0.31.109:8080/multibranch-webhook-trigger/invoke?token=Devopsshack
+   http://65.0.31.109:8080/multibranch-webhook-trigger/invoke?token=DevopTeam
    ```
 
 5. Set **Content type** to `application/json`.
