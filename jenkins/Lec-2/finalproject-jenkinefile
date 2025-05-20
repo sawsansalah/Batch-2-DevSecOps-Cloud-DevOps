@@ -1,0 +1,64 @@
+pipeline {
+agent any
+tools{
+jdk 'JDK17'
+maven 'Maven3'
+}
+
+stages {
+stage('Git CheckOut') {
+steps {
+     git branch: 'main', url: 'https://github.com/sawsansalah/Boardgame.git'
+}
+}
+stage('Compile') {
+steps {
+sh "mvn compile"
+}
+}
+stage('Unit Tests') {
+steps {
+sh "mvn test"
+}
+}
+stage('Package') {
+steps {
+sh "mvn package"
+}
+}
+
+stage('Docker Build Image') {
+steps {
+script {
+withDockerRegistry(credentialsId: 'docker-hub-credentials'
+, toolName: 'docker') {
+sh "docker build -t boardwebapp:latest ."
+sh "docker tag boardwebapp:latest 3788/boardwebapp:latest"
+}
+}
+}
+}
+
+stage('Docker Push Image') {
+steps {
+script {
+withDockerRegistry(credentialsId: 'docker-hub-credentials'
+, toolName: 'docker') {
+sh "docker push 3788/boardwebapp:latest"
+}
+}
+}
+}
+stage('Deploy application to container') {
+steps {
+script {
+withDockerRegistry(credentialsId: 'docker-hub-credentials'
+, toolName: 'docker') {
+sh "docker run -d -p 8085:8080 3788/boardwebapp:latest"
+}
+}
+}
+}
+}
+}
+
