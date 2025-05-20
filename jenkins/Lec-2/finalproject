@@ -1,0 +1,58 @@
+pipeline {
+    agent any
+    tools {
+        jdk 'JDK17'
+        maven 'maven3'
+    }
+    environment {
+        DOCKER_IMAGE = 'yourdockerhubusername/your-image-name'
+        DOCKER_TAG = 'latest'
+        DOCKER_CREDENTIALS = 'docker-hub-credentials'  // Jenkins Docker Hub credentials ID
+        KUBECONFIG = '/home/jenkins/.kube/config'      // Adjust path if needed
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/your-repo/project.git'
+            }
+        }
+        stage('Compile') {
+            steps {
+                sh 'mvn compile'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('Package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', "${DOCKER_CREDENTIALS}") {
+                        sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    }
+                }
+            }
+        }
+        stage('Deploy to Kind Kubernetes') {
+            steps {
+                withEnv(["KUBECONFIG=${env.KUBECONFIG}"]) {
+                    // Make sure deployment.yaml refers to the pushed Docker Hub image
+                    sh 'kubectl apply -f k8s/deployment.yaml'
+                    sh 'kubectl rollout status deployment/your-deployment-name'
+                }
+            }
+        }
+    }
+}
