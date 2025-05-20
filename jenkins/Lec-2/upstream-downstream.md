@@ -2,7 +2,6 @@
 
 This document covers:
 
-- ✅ Connecting Jenkins to a **private GitHub repository** using a Personal Access Token (PAT)
 - 🔁 Upstream → Downstream **Pipeline job chaining**
 - 🔁 Upstream → Downstream **Freestyle job chaining**
 
