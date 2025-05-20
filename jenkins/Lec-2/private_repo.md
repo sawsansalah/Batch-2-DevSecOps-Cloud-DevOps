@@ -32,23 +32,48 @@ This guide walks you through how to integrate a Jenkins pipeline with a **privat
 Create a Jenkins pipeline with the following `Jenkinsfile` (declarative pipeline format):
 
 ```groovy
-pipeline {
-    agent any
+ipeline {    
+    agent any 
+    tools {
+       jdk 'JDK17'
+        maven 'Maven3'
 
-    environment {
+    }
+     environment {
         GIT_CREDENTIALS = 'github-creds'  // Use the ID from Step 2
     }
 
-    stages {
+    stages {   
+
         stage('Clone Private Repo') {
             steps {
-                git credentialsId: "${GIT_CREDENTIALS}", url: 'https://github.com/your-username/private-repo.git', branch: 'main'
+                git credentialsId: "${GIT_CREDENTIALS}", url: 'https://github.com/sawsansalah/Boardgame-in-dr.git', branch: 'main'
             }
         }
 
+       
+        
+        stage('Compile') {
+            steps {
+                dir('DIR') {
+                    sh 'mvn compile'
+                }
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                dir('DIR') {
+                    sh 'mvn test'
+                }
+            }
+        }
+        
         stage('Build') {
             steps {
-                echo 'Build stage goes here'
+                dir('DIR') {
+                    sh 'mvn package'
+                }
             }
         }
     }
