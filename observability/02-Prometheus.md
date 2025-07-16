@@ -74,25 +74,33 @@ Install kubectl
 cat <<EOF | kind create cluster --name observability --config=-
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
-name: observability
 nodes:
-  - role: control-plane
-    extraPortMappings:
-      - containerPort: 80    # Ingress HTTP
-        hostPort: 80
-      - containerPort: 443   # Ingress HTTPS
-        hostPort: 443
-      - containerPort: 30090
-        hostPort: 9090   # Prometheus
-      - containerPort: 30080
-        hostPort: 8080   # Grafana
-      - containerPort: 30093
-        hostPort: 9093   # Alertmanager
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "ingress-ready=true"
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 80
+    protocol: TCP
+  - containerPort: 443
+    hostPort: 443
+    protocol: TCP
+  - containerPort: 30090
+    hostPort: 9090   # Prometheus
+  - containerPort: 30080
+    hostPort: 8080   # Grafana
+  - containerPort: 30093
+    hostPort: 9093   # Alertmanager
 EOF
 ```
  Install NGINX Ingress Controller in kind
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/kind/deploy.yaml
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 
 kubectl wait --namespace ingress-nginx \
   --for=condition=Ready pod \
