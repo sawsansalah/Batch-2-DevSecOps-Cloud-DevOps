@@ -129,13 +129,6 @@ sudo tee -a /etc/hosts <<EOF
 127.0.0.1 prometheus.local
 127.0.0.1 alertmanager.local
 EOF
-Now open in your browser:
-
-http://grafana.local
-
-http://prometheus.local
-
-http://alertmanager.local
 ```
 
 
