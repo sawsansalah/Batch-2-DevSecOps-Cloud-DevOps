@@ -1,0 +1,52 @@
+storage:
+  type: elasticsearch
+  elasticsearch:
+    host: elasticsearch-master.logging.svc  # Replace with your Elasticsearch service DNS
+    port: 9200
+    scheme: https
+    user: elastic
+    password: vrDrHN8N62VHbIHz
+    tls:
+      enabled: true
+      ca: /tls/ca-cert.pem  # Path where the CA cert is mounted
+
+provisionDataStore:
+  cassandra: false
+  elasticsearch: false
+
+query:
+  cmdlineParams:
+    es.tls.ca: "/tls/ca-cert.pem"
+  extraConfigmapMounts:
+    - name: jaeger-tls
+      mountPath: /tls
+      subPath: ""
+      configMap: jaeger-tls
+      readOnly: true
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /
+    hosts:
+      - jaeger.local
+    paths:
+      - /
+    pathType: Prefix
+
+collector:
+  cmdlineParams:
+    es.tls.ca: "/tls/ca-cert.pem"
+  extraConfigmapMounts:
+    - name: jaeger-tls
+      mountPath: /tls
+      subPath: ""
+      configMap: jaeger-tls
+      readOnly: true
+  service:
+    type: ClusterIP
+
+agent:
+  enabled: true
