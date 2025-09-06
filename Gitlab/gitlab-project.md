@@ -4,6 +4,8 @@ This project demonstrates how to build, containerize, and deploy a simple Python
 The pipeline builds a Docker image, pushes it to **DockerHub**, and deploys it to a container.
 ![alt text](image.png)
 
+https://github.com/sawsansalah/python-gitlab.git
+
 ---
 
 ## Prerequisites
